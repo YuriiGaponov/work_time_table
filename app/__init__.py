@@ -28,5 +28,6 @@
 from .core import create_app
 
 app = create_app()
+app.logger.info('Приложение успешно запущено')
 
 from . import routes  # noqa
