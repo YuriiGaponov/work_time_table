@@ -59,7 +59,9 @@ class Config:
     Рекомендуется использовать только в процессе разработки.
     """
 
-    TEMPLATES_FOLDER: str = BASE_DIR / os.getenv('TEMPLATES_FOLDER')
+    TEMPLATES_FOLDER: str = BASE_DIR / (
+        os.getenv('TEMPLATES_FOLDER') or 'templates'
+    )
     """
     Путь к директории с шаблонами
 
