@@ -5,11 +5,13 @@
 
 Основные возможности:
 - Предоставляет fixture `app` для получения экземпляра Flask-приложения.
+- Предоставляет fixture `client` для выполнения HTTP-запросов.
 - Позволяет изолировать тесты от рабочей конфигурации.
 - Обеспечивает единообразное окружение для всех тестовых сценариев.
 """
 
 import pytest
+
 from app import create_app
 
 
@@ -41,4 +43,38 @@ def app():
     - Каждый вызов fixture создаёт новый экземпляр приложения.
     - Конфигурация приложения определяется в `create_app()`
     """
-    return create_app()
+    app = create_app()
+    yield app
+
+
+@pytest.fixture()
+def client():
+    """
+    Fixture для получения тестового клиента Flask.
+
+    Создаёт и возвращает объект тестового клиента (`test_client`),
+    позволяющий имитировать HTTP-запросы к приложению в тестовой среде.
+
+    Назначение:
+    - Используется в тестах для отправки HTTP-запросов (GET, POST и др.)
+      к эндпоинтам приложения.
+    - Обеспечивает изолированное взаимодействие с приложением
+      без влияния на рабочую среду.
+    - Позволяет проверять статусы ответов, заголовки и содержимое.
+
+    Возвращаемое значение:
+    FlaskClient
+        Экземпляр тестового клиента Flask, готовый к выполнению запросов.
+
+    Пример использования в тестах:
+        def test_login_endpoint(client):
+            response = client.post('/login', json={
+                'username': 'testuser',
+                'password': 'testpass'
+            })
+            assert response.status_code == 200
+            assert response.json['success'] is True
+    """
+    from app import app
+    with app.test_client() as client:
+        yield client

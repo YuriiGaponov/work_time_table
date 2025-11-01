@@ -43,6 +43,7 @@ def create_app() -> Flask:
     Примечания:
         - Функция предназначена для использования в точке входа приложения
         - Конфигурация загружается из модуля config.py
+        - Путь к шаблонам устанавливается из `Config.TEMPLATES_FOLDER`.
         - Логирование настраивается через статический метод
             Logger.configure_logger()
         - Метод configure_logger() применяет настройки логирования
@@ -50,5 +51,6 @@ def create_app() -> Flask:
     """
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.template_folder = Config.TEMPLATES_FOLDER  # Путь к шаблонам
     Logger.configure_logger(app)  # Настройка системы логирования
     return app
