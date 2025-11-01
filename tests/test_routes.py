@@ -53,3 +53,26 @@ class TestRoutes:
         """
         response = client.get('/')
         assert response.status_code == HTTPStatus.OK
+
+    @classmethod
+    def test_404_page(cls, client):
+        """
+    Проверяет обработку несуществующих маршрутов (ошибка 404 Not Found).
+
+    Сценарий теста:
+    1. Отправляет GET-запрос к заведомо несуществующему URL (`/nonexistent`).
+    2. Проверяет, что сервер возвращает статус 404 Not Found.
+
+    Параметры:
+    - cls: ссылка на класс (требуется для @classmethod);
+    - client: экземпляр тестового клиента для выполнения HTTP-запросов.
+
+    Ожидаемый результат:
+    - Код ответа HTTP: HTTPStatus.NOT_FOUND (404).
+
+    Поведение при ошибке:
+    - Если статус отличается от 404,
+      тест завершается с ошибкой утверждения (AssertionError).
+    """
+        response = client.get('/nonexistent')
+        assert response.status_code == HTTPStatus.NOT_FOUND
