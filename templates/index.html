@@ -16,9 +16,35 @@
             color: #2c3e50;
             margin-bottom: 20px;
         }
+        .calendar-btn {
+            display: block;
+            width: 150px;
+            padding: 10px;
+            margin: 0 auto;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .calendar-btn:hover {
+            background-color: #2980b9;
+        }
     </style>
 </head>
 <body>
     <h1>Табель рабочего времени</h1>
+    <button class="calendar-btn" onclick="showCalendar()">Календарь</button>
+
+    <script>
+        function showCalendar() {
+            console.log('Открывается календарь...');
+            // Здесь можно добавить логику для отображения календаря
+            // Например, открыть модальное окно с календарём или перейти на страницу календаря
+        }
+    </script>
 </body>
 </html>
