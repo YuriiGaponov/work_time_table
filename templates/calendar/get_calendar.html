@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+        }
+
+        .download-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 14px 20px;
+            text-align: center;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .calendar {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .download-btn {
+                width: 180px;
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Календарь</h1>
+        
+        <button class="download-btn" onclick="downloadCalendar()">
+            Скачать календарь
+        </button>
+        
+        <div class="calendar">
+            <!-- Здесь может размещаться сам календарь (сетка дат, виджет и т.п.) -->
+            <p>Здесь будет отображаться календарь.</p>
+        </div>
+    </div>
+
+    <script>
+        function downloadCalendar() {
+            // Пример реализации скачивания (замените на реальную логику)
+            const link = document.createElement('a');
+            link.href = 'data:text/plain;charset=utf-8,Пример содержимого календаря';
+            link.download = 'календарь.txt';
+            link.click();
+            
+            alert('Календарь загружен!');
+        }
+    </script>
+</body>
+</html>
