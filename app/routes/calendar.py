@@ -6,11 +6,15 @@ from .. import app
 
 @app.route('/calendar')
 def calendar():
-    """Обработчик GET‑запроса для /calendar.
+    """Обработчик GET‑запроса для маршрута /calendar.
 
-    Рендерит и возвращает шаблон календаря.
+    Получает список лет из конфигурации приложения (app.config['YEARS'])
+    и рендерит шаблон календарного интерфейса.
 
     Returns:
-        str: HTML‑код страницы календаря.
+        str: HTML‑код страницы календаря, сгенерированный на основе шаблона
+        'calendar/get_calendar.html' с переданным параметром years.
     """
-    return render_template('calendar/get_calendar.html')
+    years = app.config['YEARS']
+
+    return render_template('calendar/get_calendar.html', years=years)

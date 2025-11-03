@@ -35,3 +35,13 @@ class Config:
     Путь к шаблонам: BASE_DIR + значение TEMPLATES_FOLDER
     (по умолчанию 'templates').
     """
+
+    YEARS = list(
+        range(
+            int(os.getenv('MIN_YEAR')), int(os.getenv('MAX_YEAR')) + 1
+        )
+    )
+    """
+    Список допустимых годов (целых чисел),
+    с календарями которых работает приложение.
+    """
