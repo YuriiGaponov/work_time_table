@@ -5,112 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Календарь</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
             color: #333;
-            line-height: 1.6;
-            padding: 20px;
+            background-color: #f5f5f5;
         }
-
         .container {
-            max-width: 1200px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
         h1 {
             text-align: center;
             color: #2c3e50;
             margin-bottom: 30px;
-            font-size: 2.8rem;
-            letter-spacing: 1px;
+            font-size: 24px;
         }
-
-        .download-btn {
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
             display: block;
-            width: 200px;
-            margin: 30px auto;
-            padding: 14px 20px;
-            text-align: center;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #fff;
+            transition: border-color 0.3s;
+        }
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
             background-color: #3498db;
             color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: background-color 0.3s ease, transform 0.2s ease;
             border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
         }
-
-        .download-btn:hover {
+        button:hover {
             background-color: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        .download-btn:active {
-            transform: translateY(0);
-        }
-
-        .calendar {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            min-height: 300px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .download-btn {
-                width: 180px;
-                padding: 12px 16px;
-                font-size: 0.95rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Календарь</h1>
+        <h1>Скачать календарь</h1>
         
-        <button class="download-btn" onclick="downloadCalendar()">
-            Скачать календарь
-        </button>
-        
-        <div class="calendar">
-            <!-- Здесь может размещаться сам календарь (сетка дат, виджет и т.п.) -->
-            <p>Здесь будет отображаться календарь.</p>
-        </div>
-    </div>
-
-    <script>
-        function downloadCalendar() {
-            // Пример реализации скачивания (замените на реальную логику)
-            const link = document.createElement('a');
-            link.href = 'data:text/plain;charset=utf-8,Пример содержимого календаря';
-            link.download = 'календарь.txt';
-            link.click();
+        <form method="POST" action="/download-calendar">
+            <div class="form-group">
+                <label for="year">Выберите год:</label>
+                <select id="year" name="year" required>
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             
-            alert('Календарь загружен!');
-        }
-    </script>
+            <button type="submit">Скачать календарь</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -47,7 +47,7 @@ def app():
     yield app
 
 
-@pytest.fixture()
+@pytest.fixture
 def client():
     """
     Fixture для получения тестового клиента Flask.
