@@ -38,3 +38,6 @@ app.logger.info('Приложение успешно запущено')
 from . import routes  # noqa
 
 asyncio.run(create_tables())  # создание таблиц БД при первом запуске
+app.logger.info(
+    'Созданы база данных и таблицы, унаследованные от app.core.db.PreBase'
+)
