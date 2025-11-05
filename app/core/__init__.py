@@ -14,6 +14,12 @@
 """
 
 from .app import create_app
-from .db import AsyncSessionLocal, Base, create_tables
+from .db import AsyncSessionLocal, Base, create_tables, SessionLocal
 
-__all__ = ['AsyncSessionLocal', 'Base', 'create_app', 'create_tables']
+__all__ = [
+    'AsyncSessionLocal',
+    'Base',
+    'create_app',
+    'create_tables',
+    'SessionLocal'
+]
