@@ -13,7 +13,7 @@
 с моделями SQLAlchemy в асинхронном приложении.
 """
 
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Integer, create_engine
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import declared_attr, declarative_base, sessionmaker
 
@@ -29,6 +29,15 @@ AsyncSessionLocal = sessionmaker(
     bind=async_engine,
     class_=AsyncSession
 )
+
+# Синхронный движок для работы с базой данных.
+# Создаётся на основе URL из конфигурации (SQLALCHEMY_DATABASE_URI).
+# Предназначен для синхронных операций с БД, в отличие от async_engine.
+engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
+
+# Фабрика синхронных сессий для взаимодействия с базой данных.
+# Использует созданный синхронный движок (engine).
+SessionLocal = sessionmaker(engine)
 
 
 class PreBase():
