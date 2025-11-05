@@ -9,8 +9,11 @@
 Структура пакета:
 * app.py - фабрика создания Flask-приложения
 * config.py - конфигурационные настройки
+* db.py - настройки и подключение к базе данных
+* logger.py - система логирования
 """
 
 from .app import create_app
+from .db import AsyncSessionLocal, Base, create_tables
 
-__all__ = ['create_app']
+__all__ = ['AsyncSessionLocal', 'Base', 'create_app', 'create_tables']
