@@ -14,11 +14,13 @@
 """
 
 from .app import create_app
+from .config import Config
 from .db import AsyncSessionLocal, Base, create_tables, SessionLocal
 
 __all__ = [
     'AsyncSessionLocal',
     'Base',
+    'Config',
     'create_app',
     'create_tables',
     'SessionLocal'

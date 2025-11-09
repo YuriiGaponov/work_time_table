@@ -1,7 +1,9 @@
 """Маршрут /calendar для отображения календарного интерфейса."""
 
 from flask import request, render_template
+
 from .. import app
+from app.services import get_calendar
 
 
 @app.route('/calendar')
@@ -21,7 +23,7 @@ def calendar():
 
 
 @app.route('/download-calendar', methods=['POST'])
-def download_calendar():
+async def download_calendar():
     selected_year = request.form.get('year', type=int)
     app.logger.info(
         f'На эндпоинт /download-calendar передано значение года'
@@ -31,4 +33,5 @@ def download_calendar():
     if not selected_year or selected_year not in app.config['YEARS']:
         return "Некорректный год", 400
 
-    return f"Календарь за {selected_year} год успешно загружен!"
+    print(await get_calendar(selected_year))
+    return f'Календарь за {selected_year} год успешно загружен!'
