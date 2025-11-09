@@ -25,7 +25,10 @@ async def get_calendar(year):
         # Перебираем все дни года
         for y, m, d in iterate_days_in_year(year):
             url = f'https://calendar.kuzyak.in/api/calendar/{y}/{m}/{d}'
-            async with session.get(url) as response:
-                # Ждем ответа и читаем текст
-                text = await response.text()
-                print(text)
+            try:
+                async with session.get(url) as response:
+                    # Ждем ответа и читаем текст
+                    text = await response.text()
+                    print(text)
+            except Exception as e:
+                print(f"Ошибка при запросе {url}: {e}")
