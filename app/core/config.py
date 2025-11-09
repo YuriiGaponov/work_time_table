@@ -69,3 +69,5 @@ class Config:
         В данном приложении в значение передаются данные
      для создания синхронного движка БД.
     """
+
+    CALENDAR_API_URL: str = 'https://calendar.kuzyak.in/api/calendar/'

@@ -1,6 +1,8 @@
 import aiohttp
 from datetime import datetime, timedelta
 
+from app.core import Config
+
 
 def iterate_days_in_year(year):
     # Начинаем с 1 января заданного года
@@ -24,7 +26,7 @@ async def get_calendar(year):
     async with aiohttp.ClientSession() as session:
         # Перебираем все дни года
         for y, m, d in iterate_days_in_year(year):
-            url = f'https://calendar.kuzyak.in/api/calendar/{y}/{m}/{d}'
+            url = f'{Config.CALENDAR_API_URL}{y}/{m}/{d}'
             try:
                 async with session.get(url) as response:
                     # Ждем ответа и читаем текст
