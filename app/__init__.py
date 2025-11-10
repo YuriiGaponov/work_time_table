@@ -42,7 +42,8 @@ import asyncio
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from .core import create_app, create_tables
+from .core import Base, create_app, create_tables
+from .models import CalendarDay  # noqa
 
 app = create_app()
 app.logger.info('Приложение успешно запущено')
@@ -56,3 +57,4 @@ asyncio.run(create_tables())  # создание таблиц БД при пер
 app.logger.info(
     'Созданы база данных и таблицы, унаследованные от app.core.db.PreBase'
 )
+print(Base.metadata.tables.keys())  # временно, для отладки
