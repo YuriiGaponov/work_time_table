@@ -46,6 +46,18 @@ class Logger:
     Включает расширение .log для корректного распознавания типа файла.
     """
 
+    LOG_MAX_BYTES = int(os.getenv('LOG_MAX_BYTES', '1000000'))
+    """
+    Максимальный размер одного лог‑файла в байтах.
+    Когда файл достигает указанного размера, создается новый файл.
+    """
+
+    LOG_BACKUP_COUNT = int(os.getenv('LOG_BACKUP_COUNT', '0'))
+    """
+    Количество резервных копий лог‑файлов, сохраняемых при ротации.
+    После превышения этого числа самые старые файлы удаляются.
+    """
+
     LOG_ENCODING: str = os.getenv('LOG_ENCODING')
     """
     Кодировка, используемая для записи логов в файл.
@@ -89,6 +101,8 @@ class Logger:
         handler = RotatingFileHandler(
             f'{cls.LOG_DIR}/{cls.LOG_FILE_NAME}',
             mode=cls.HANDLER_MODE,
+            maxBytes=cls.LOG_MAX_BYTES,
+            backupCount=cls.LOG_BACKUP_COUNT,
             encoding=cls.LOG_ENCODING
         )
         formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
