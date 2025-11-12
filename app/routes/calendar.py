@@ -3,7 +3,7 @@
 from flask import request, render_template
 
 from .. import app
-from app.services import get_calendar
+from app.services import CalendarService
 
 
 @app.route('/calendar')
@@ -33,5 +33,7 @@ async def download_calendar():
     if not selected_year or selected_year not in app.config['YEARS']:
         return "Некорректный год", 400
 
-    print(await get_calendar(selected_year))
+    # print(await CalendarService.get_calendar(selected_year))
+    # print(CalendarService.get_calendar(selected_year))
+    await CalendarService.get_calendar(selected_year)
     return f'Календарь за {selected_year} год успешно загружен!'

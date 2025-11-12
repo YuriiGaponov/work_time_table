@@ -6,6 +6,6 @@
 * calendar_service.py — бизнес‑логику работа с календарем
 """
 
-from .calendar_service import get_calendar
+from .calendar_service import CalendarService
 
-__all__ = ['get_calendar']
+__all__ = ['CalendarService']
