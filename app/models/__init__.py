@@ -11,6 +11,6 @@
     from app.models import User, Post, Comment
 """
 
-from .calendar import CalendarDay
+from .calendar import CalendarDay, CalendarDayService
 
-__all__ = ['CalendarDay']
+__all__ = ['CalendarDay', 'CalendarDayService']

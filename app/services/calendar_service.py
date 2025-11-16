@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from typing import AsyncGenerator, Generator, Optional, Tuple
 
 from app.core import Config
+from app.models import CalendarDayService
 
 
 class CalendarService:
@@ -53,7 +54,7 @@ class CalendarService:
         try:
             async with session.get(url, timeout=10) as response:
                 if response.status == 200:
-                    return await response.text()
+                    return await response.json()
                 else:
                     print(f"Ошибка {response.status} при запросе {url}")
                     return None
@@ -136,4 +137,4 @@ class CalendarService:
         """
         async with ClientSession() as session:
             async for day in cls.get_days(year, session):
-                print(day)
+                print(CalendarDayService.get_calendar_day_from_api(day))
