@@ -21,13 +21,12 @@ class CalendarDay(Base):
         date (datetime): дата (обязательный).
         is_working_day (bool): рабочий день (по умолч. True).
         is_short_day (bool): сокращённый день (по умолч. False).
-        status_code (int): код статуса (обязательный).
         holiday (str|None): название праздника (до 100 симв.).
     """
 
     year = Column(Integer, nullable=False)
     month_name = Column(String(20), nullable=False)
-    date = Column(DateTime, nullable=False)
+    date = Column(DateTime, nullable=False, unique=True)
     is_working_day = Column(Boolean, nullable=False, default=True)
     is_short_day = Column(Boolean, nullable=False, default=False)
     holiday = Column(String(100), nullable=True)

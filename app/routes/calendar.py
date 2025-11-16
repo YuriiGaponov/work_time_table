@@ -33,7 +33,5 @@ async def download_calendar():
     if not selected_year or selected_year not in app.config['YEARS']:
         return "Некорректный год", 400
 
-    # print(await CalendarService.get_calendar(selected_year))
-    # print(CalendarService.get_calendar(selected_year))
     await CalendarService.get_calendar(selected_year)
     return f'Календарь за {selected_year} год успешно загружен!'
